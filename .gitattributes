@@ -1,5 +1,12 @@
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.avi filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
+
+# Específico para Dart
 *.dart linguist-language=Dart
 *.cpp linguist-language=Dart
+
+# Específico para Flutter
+*.yaml linguist-language=Dart
+*.json linguist-language=Dart
+*.proto linguist-language=Dart
