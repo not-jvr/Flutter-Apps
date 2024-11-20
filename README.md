@@ -10,8 +10,9 @@ Este repositorio incluye los siguientes proyectos:
 
 1. Hello_world_app: Primera aplicación creada para familiarizarme con Flutter y aprender su estructura básica. Incluye configuraciones iniciales y una interfaz sencilla.
 2. Yes_no_app: Un chat interactivo donde el usuario envía preguntas y la app responde automáticamente con GIFs animados (sí o no) obtenidos de una API.
-3. Widgets_app: Aplicación diseñada para explorar y mostrar diferentes tipos de widgets en Flutter. Sirve como referencia para comprender sus funcionalidades y personalizaciones.
-4. To_do_app: Aplicación en desarrollo para gestionar tareas (to-do list). Actualmente incluye funcionalidades básicas y está siendo ampliada con nuevas características.
+3. Toktik: Una aplicación básica inspirada en TikTok. Permite explorar el funcionamiento de listas dinámicas, animaciones y la reproducción de contenido multimedia.
+4. Widgets_app: Aplicación diseñada para explorar y mostrar diferentes tipos de widgets en Flutter. Sirve como referencia para comprender sus funcionalidades y personalizaciones.
+5. To_do_app: Aplicación en desarrollo para gestionar tareas (to-do list). Actualmente incluye funcionalidades básicas y está siendo ampliada con nuevas características.
 
 ## Guía de Uso
 
