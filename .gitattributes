@@ -5,8 +5,3 @@
 # Específico para Dart
 *.dart linguist-language=Dart
 *.cpp linguist-language=Dart
-
-# Específico para Flutter
-*.yaml linguist-language=Dart
-*.json linguist-language=Dart
-*.proto linguist-language=Dart
