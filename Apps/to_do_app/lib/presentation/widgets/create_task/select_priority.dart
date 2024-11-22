@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Widget que maneja la selección de prioridad
-/// Puede ser reutilizado en diferentes partes de la aplicación
 class PrioritySelector extends StatelessWidget {
   final int selectedPriority;
   final ValueChanged<int> onPriorityChanged;
-  static const int defaultPriority = 5;
+  static const int defaultPriority = 2;
 
   const PrioritySelector({
     super.key,
@@ -19,6 +17,7 @@ class PrioritySelector extends StatelessWidget {
     
     return Dialog(
       backgroundColor: theme.colorScheme.surface,
+      surfaceTintColor: Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -26,20 +25,18 @@ class PrioritySelector extends StatelessWidget {
           children: [
             Text(
               'Select Priority',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: theme.colorScheme.onSurface,
-              ),
+              style: theme.textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
-            // Grid de botones de prioridad
             GridView.builder(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
+                crossAxisCount: 3,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
+                childAspectRatio: 1.2,
               ),
-              itemCount: 10,
+              itemCount: 3,
               itemBuilder: (context, index) {
                 final priority = index + 1;
                 return _PriorityButton(
@@ -53,15 +50,14 @@ class PrioritySelector extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const SizedBox(width: 8),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Cerrar'),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(
+                'Cerrar',
+                style: TextStyle(
+                  color: theme.colorScheme.primary,
                 ),
-              ],
+              ),
             ),
           ],
         ),
@@ -70,7 +66,6 @@ class PrioritySelector extends StatelessWidget {
   }
 }
 
-/// Botón individual para seleccionar una prioridad específica
 class _PriorityButton extends StatelessWidget {
   final int priority;
   final bool isSelected;
@@ -82,9 +77,23 @@ class _PriorityButton extends StatelessWidget {
     required this.onTap,
   });
 
+  String _getPriorityLabel(int priority) {
+    switch (priority) {
+      case 1:
+        return 'Alta';
+      case 2:
+        return 'Media';
+      case 3:
+        return 'Baja';
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -92,32 +101,39 @@ class _PriorityButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: Container(
           decoration: BoxDecoration(
-            color: isSelected ? theme.colorScheme.surfaceContainerHighest : Colors.transparent,
+            color: isSelected 
+              ? theme.colorScheme.primaryContainer 
+              : theme.colorScheme.surface,
             border: Border.all(
-              color: isSelected ? theme.colorScheme.primary : theme.colorScheme.outline,
+              color: isSelected 
+                ? theme.colorScheme.primary 
+                : theme.colorScheme.outlineVariant,
             ),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Stack(
-            alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 '$priority',
                 style: TextStyle(
-                  color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface,
+                  color: isSelected 
+                    ? theme.colorScheme.onPrimaryContainer 
+                    : theme.colorScheme.onSurface,
+                  fontSize: 18,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
-              if (isSelected)
-                Positioned(
-                  top: 4,
-                  right: 4,
-                  child: Icon(
-                    Icons.flag,
-                    size: 12,
-                    color: theme.colorScheme.primary,
-                  ),
+              const SizedBox(height: 4),
+              Text(
+                _getPriorityLabel(priority),
+                style: TextStyle(
+                  color: isSelected 
+                    ? theme.colorScheme.onPrimaryContainer 
+                    : theme.colorScheme.onSurfaceVariant,
+                  fontSize: 12,
                 ),
+              ),
             ],
           ),
         ),
